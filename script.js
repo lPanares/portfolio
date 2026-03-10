@@ -1,53 +1,15 @@
-// Theme Toggle
-const themeToggle = document.getElementById('theme-toggle');
-const storedTheme = localStorage.getItem('theme');
-
-if (storedTheme) {
-  document.body.setAttribute('data-theme', storedTheme);
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.body.setAttribute('data-theme', 'dark');
-}
-
-themeToggle.addEventListener('click', () => {
-  const current = document.body.getAttribute('data-theme');
-  const newTheme = current === 'dark' ? 'light' : 'dark';
-  document.body.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
-
-// Background Changer
-const bgChangeBtn = document.getElementById('bg-change');
-
-bgChangeBtn.addEventListener('click', () => {
-  const bgColor = prompt(
-    "Enter a background color name (e.g., lightblue, #4CAF50) or 'reset' to go back:"
-  );
-  
-  if (bgColor === null) return; // User canceled
-
-  if (bgColor.toLowerCase() === 'reset') {
-    document.body.style.backgroundImage = '';
-    document.body.style.backgroundColor = '';
-    localStorage.removeItem('custom-bg');
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const isDark = document.body.style.backgroundColor === 'rgb(30, 30, 30)';
+  if (isDark) {
+    document.body.style.backgroundColor = '#f0f4ff';
+    document.querySelectorAll('.block').forEach(el => el.style.backgroundColor = '#6495ED');
+    document.querySelectorAll('.divider').forEach(el => el.style.backgroundColor = '#000');
+    document.querySelector('footer').style.backgroundColor = '#e6ecff';
   } else {
-    // Try as color first
-    const testDiv = document.createElement('div');
-    testDiv.style.color = bgColor;
-    if (testDiv.style.color !== '') {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundColor = bgColor;
-      localStorage.setItem('custom-bg', bgColor);
-    } else {
-      alert('Invalid color. Please try a valid name, hex, or "reset".');
-    }
-  }
-});
-
-// Load saved custom background on page load
-window.addEventListener('load', () => {
-  const savedBg = localStorage.getItem('custom-bg');
-  if (savedBg) {
-    document.body.style.backgroundImage = '';
-    document.body.style.backgroundColor = savedBg;
+    document.body.style.backgroundColor = '#1e1e1e';
+    document.querySelectorAll('.block').forEach(el => el.style.backgroundColor = '#2d3748');
+    document.querySelectorAll('.divider').forEach(el => el.style.backgroundColor = '#fff');
+    document.querySelector('footer').style.backgroundColor = '#1a202c';
+    document.body.style.color = '#e0e0e0';
   }
 });
