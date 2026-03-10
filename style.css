@@ -1,41 +1,54 @@
+/* === GLOBAL === */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4ff;
-  color: #000;
-  padding: 0;
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background-color 0.4s, color 0.4s;
 }
 
-.block {
-  background-color: #6495ED; /* Cornflower Blue */
-  padding: 1.5rem;
-  margin: 0;
+/* === HERO SECTION === */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+  background-color: #0d0d0d;
 }
 
-.block h2 {
-  font-size: 1.4rem;
+.hero h1 {
+  font-size: 2.4rem;
   margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4361ee;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: 0.8rem auto;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.hero button {
+  background-color: #4361ee;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
   font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
-.block p, .block ul {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.block ul {
-  padding-left: 1.5rem;
-}
-
-.block a {
-  color: #000;
-  text-decoration: underline;
-}
-
-.block a:hover {
-  color: #333;
-}
-
+/* === DIVIDER === */
 .divider {
   border: none;
   height: 8px;
@@ -43,22 +56,89 @@ body {
   margin: 0;
 }
 
-button {
-  background-color: #000;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  cursor: pointer;
+/* === BLUE BLOCKS === */
+.block {
+  background-color: #6495ED; /* Cornflower Blue */
+  padding: 1.8rem 1.5rem;
+  margin: 0;
 }
 
-button:hover {
-  opacity: 0.9;
+.block h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  color: #000;
 }
 
+.block ul {
+  padding-left: 1.6rem;
+  font-size: 1rem;
+}
+
+.block a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.block a:hover {
+  text-decoration: underline;
+}
+
+/* === FOOTER === */
 footer {
   text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+  padding: 1.2rem;
   background-color: #e6ecff;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* === LIGHT MODE === */
+[data-theme="light"] {
+  --bg: #f0f4ff;
+  --text: #000;
+  --block-bg: #6495ED;
+  --divider-bg: #000;
+  --footer-bg: #e6ecff;
+}
+
+[data-theme="light"] body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="light"] .hero {
+  background-color: #ffffff;
+}
+
+[data-theme="light"] .hero h1,
+[data-theme="light"] .hero p {
+  color: var(--text);
+}
+
+[data-theme="light"] .hero button {
+  background-color: #000;
+  color: white;
+}
+
+[data-theme="light"] .block {
+  background-color: var(--block-bg);
+  color: var(--text);
+}
+
+[data-theme="light"] .divider {
+  background-color: var(--divider-bg);
+}
+
+[data-theme="light"] footer {
+  background-color: var(--footer-bg);
+  color: #333;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.8rem; }
+  .profile-pic { width: 110px; height: 110px; }
+  .block { padding: 1.4rem 1rem; }
 }
