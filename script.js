@@ -1,15 +1,19 @@
-document.getElementById('theme-toggle').addEventListener('click', () => {
-  const isDark = document.body.style.backgroundColor === 'rgb(30, 30, 30)';
-  if (isDark) {
-    document.body.style.backgroundColor = '#f0f4ff';
-    document.querySelectorAll('.block').forEach(el => el.style.backgroundColor = '#6495ED');
-    document.querySelectorAll('.divider').forEach(el => el.style.backgroundColor = '#000');
-    document.querySelector('footer').style.backgroundColor = '#e6ecff';
-  } else {
-    document.body.style.backgroundColor = '#1e1e1e';
-    document.querySelectorAll('.block').forEach(el => el.style.backgroundColor = '#2d3748');
-    document.querySelectorAll('.divider').forEach(el => el.style.backgroundColor = '#fff');
-    document.querySelector('footer').style.backgroundColor = '#1a202c';
-    document.body.style.color = '#e0e0e0';
-  }
+const toggleBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Load saved theme preference
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', savedTheme);
+
+// Update button text based on current theme
+toggleBtn.textContent = savedTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
+
+toggleBtn.addEventListener('click', () => {
+  const current = body.getAttribute('data-theme');
+  const newTheme = current === 'dark' ? 'light' : 'dark';
+  
+  body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  
+  toggleBtn.textContent = newTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
 });
