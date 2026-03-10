@@ -1,19 +1,14 @@
-const toggleBtn = document.getElementById('theme-toggle');
+const btn = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Load saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'dark';
-body.setAttribute('data-theme', savedTheme);
+const saved = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', saved);
+btn.textContent = saved === 'dark' ? 'Switch to Light' : 'Switch to Dark';
 
-// Update button text based on current theme
-toggleBtn.textContent = savedTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
-
-toggleBtn.addEventListener('click', () => {
-  const current = body.getAttribute('data-theme');
-  const newTheme = current === 'dark' ? 'light' : 'dark';
-  
-  body.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  
-  toggleBtn.textContent = newTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark';
+btn.addEventListener('click', () => {
+  const curr = body.getAttribute('data-theme');
+  const next = curr === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  btn.textContent = next === 'dark' ? 'Switch to Light' : 'Switch to Dark';
 });
